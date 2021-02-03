@@ -19,26 +19,28 @@
   </head>
   <body>
     <header>
-      <h1>A Dream of the Future</h1>
+      <h1>Coffee</h1>
     </header>
 
     <main>
-      <h2>Oh hi,</h2>
+      <section>
+        <label for="search-selection"></label>
+        <input id="search-selection" type="text" placeholder="Search Coffees">
+        <button id="search" type="submit">Search</button>
+      </section>
 
-      <p>Tell me your hopes and dreams:</p>
-
-      <form>
+      <!-- <form>
         <label>
           New Dream
           <input name="dream" type="text" maxlength="100" required placeholder="Dreams!">
         </label>
         <button type="submit" id="submit-dream">Add Dream</button>
-      </form>
+      </form> -->
 
-      <section class="dreams">
-        <ul id="dreams">
-          <em>loading dreams&hellip;</em>
-        </ul>
+      <section class="coffees-list">
+        <div id="coffees">
+          <em>loading coffees&hellip;</em>
+        </div>
       </section>
     </main>
 
