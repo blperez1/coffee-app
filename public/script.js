@@ -4,6 +4,7 @@
 
 // define variables that reference elements on our page
 const coffeesList = document.querySelector("#coffees");
+const searchSelection = document.querySelector("#search-selection")
 const dreamsForm = document.querySelector("form");
 
 // a helper function that creates renders html for each coffee
@@ -20,14 +21,9 @@ function renderCoffees(coffees) {
   for(let coffee of coffees) {
     html += renderCoffee(coffee);
   }
-  coffeesList.innerHTML = html;
+  return html;
 }
 
-function appendNewDream(dream) {
-  const newListItem = document.createElement("li");
-  newListItem.innerText = dream;
-  dreamsList.appendChild(newListItem);
-}
 
 
 fetch("/coffees")
@@ -36,21 +32,7 @@ fetch("/coffees")
     // remove the loading text
     coffeesList.firstElementChild.remove();
   
-    // iterate through every dream and add it to our page
-    renderCoffees(coffees);
-  
-    // listen for the form to be submitted and add a new dream when it is
-    // dreamsForm.addEventListener("submit", event => {
-      // stop our form submission from refreshing the page
-      // event.preventDefault();
-
-      // get dream value and add it to the list
-      // let newDream = dreamsForm.elements.dream.value;
-      // dreams.push(newDream);
-      // appendNewDream(newDream);
-
-      // reset form
-      // dreamsForm.reset();
-      // dreamsForm.elements.dream.focus();
-    // });
+    // iterate through every coffee and add it to our page
+    coffeesList.innerHTML = renderCoffees(coffees);
+   
   });
