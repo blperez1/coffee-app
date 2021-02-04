@@ -5,7 +5,9 @@
 // define variables that reference elements on our page
 const coffeesList = document.querySelector("#coffees");
 const searchSelection = document.querySelector("#search-selection")
-const dreamsForm = document.querySelector("form");
+const roastSelection = document.querySelector("#roast-selection");
+const searchBtn = document.querySelector("#search")
+
 
 // a helper function that creates renders html for each coffee
 function renderCoffee({name, roast, price}) {
@@ -24,6 +26,12 @@ function renderCoffees(coffees) {
   return html;
 }
 
+function filterRoasts(coffees) {
+  const roastSelected = roastSelection.value;
+  let filterRoast =  (roastSelected === "all") ? coffees : coffees.filter(({roast}) => roast === roastSelected);
+  return renderCoffees(filterRoast);
+}
+
 
 
 fetch("/coffees")
@@ -34,5 +42,10 @@ fetch("/coffees")
   
     // iterate through every coffee and add it to our page
     coffeesList.innerHTML = renderCoffees(coffees);
+
+    searchBtn.addEventListener('click', () => {
+      coffeesList.innerHTML = filterRoasts(coffees);
+    });
+
    
   });
