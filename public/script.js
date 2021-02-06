@@ -32,6 +32,20 @@ function filterRoasts(coffees) {
   return renderCoffees(filterRoast);
 }
 
+function filterByName(coffees) {
+  let nameSelected = searchSelection.value
+  return coffees.filter(({name}) => name.toLowerCase().startsWith(nameSelected.toLowerCase()))
+}
+
+function newCoffee(name, roast, price) {
+  return {
+      id: coffees.length + 1,
+      name,
+      roast,
+      price
+   }
+}
+
 
 
 fetch("/coffees")
@@ -47,5 +61,8 @@ fetch("/coffees")
       coffeesList.innerHTML = filterRoasts(coffees);
     });
 
+    searchSelection.addEventListener('keyup', () => {
+      coffeesList.innerHTML = renderCoffees(filterByName(coffees))
+    })
    
   });
